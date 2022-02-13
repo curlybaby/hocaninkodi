@@ -5,7 +5,7 @@ Jan 28 2022
 
 # start with imports
 import numpy as np
-from skimage import io
+from skimage import io 
 import random
 import matplotlib.pyplot as plt
 import random
@@ -45,7 +45,7 @@ colorz = {
 }
 pathPen = (255,0,0) # red spared for drawing paths
 
-maxTime = 100 # number of seconds allowed for a player to return from run()
+maxTime = 1000 # number of seconds allowed for a player to return from run()
 
 # derived variables
 imSize = nCorr * 2 * boxSize - boxSize
@@ -66,7 +66,7 @@ for d in range(10):
 # set up timers to limit execution time for run() function calls
 # setting timeout values for players and game engine
 timeout_for_game = 1e6
-timeout_for_players = 100
+timeout_for_players = 1000
 
 # for alarm handling, timeout handler function is defined
 def timeout_handler(sign, fr):
@@ -352,15 +352,12 @@ class LetsPlayAGame():
             if self.Players[pk][-1] > 0:
                 tStart = time.perf_counter()
                 signal.setitimer(signal.ITIMER_REAL, timeout_for_players)
-                path = player.run(self.maze, info)
-                print(path)
-                #try:
-                 #   print(path)
-                  #  path = player.run(self.maze, info)
-                #except Exception as e:
-                 #   print(f'{pk} failed!!!\n')
-                  #  print(path)
-                   # path = []
+                #path = player.run(self.maze, info)
+                try:
+                    path = player.run(self.maze, info)
+                except Exception as e:
+                    print(f'{pk} failed!!!\n')
+                    path = []
                 signal.setitimer(signal.ITIMER_REAL, timeout_for_game)
                 tExec = time.perf_counter() - tStart
                 # log result for the current player, -1 is number of pixels to cover and to be updated later
