@@ -5,7 +5,7 @@ Jan 28 2022
 
 # start with imports
 import numpy as np
-from skimage import io 
+from skimage import io a
 import random
 import matplotlib.pyplot as plt
 import random
@@ -354,9 +354,11 @@ class LetsPlayAGame():
                 signal.setitimer(signal.ITIMER_REAL, timeout_for_players)
                 #path = player.run(self.maze, info)
                 try:
+                    print(path)
                     path = player.run(self.maze, info)
                 except Exception as e:
                     print(f'{pk} failed!!!\n')
+                    print(path)
                     path = []
                 signal.setitimer(signal.ITIMER_REAL, timeout_for_game)
                 tExec = time.perf_counter() - tStart
