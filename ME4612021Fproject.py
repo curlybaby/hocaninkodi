@@ -5,7 +5,7 @@ Jan 28 2022
 
 # start with imports
 import numpy as np
-from skimage import io a
+from skimage import io
 import random
 import matplotlib.pyplot as plt
 import random
